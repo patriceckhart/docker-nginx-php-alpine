@@ -1,0 +1,9 @@
+web:
+  image: patriceckhart/docker-nginx-php-alpine
+  ports:
+    - '80:80'
+    - '22:22'
+  volumes:
+    - /data
+  environment:
+    IMPORT_GITHUB_PUB_KEYS: 'YOUR_GITHUB_USERNAME'

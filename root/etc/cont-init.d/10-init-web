@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv /bin/bash
+set -ex
+
+mkdir -p /data/web
+
+cd /data/releases/current
+
+if [ -f /data/web/beard.json ]
+	then
+		beard patch
+fi
+
+chown www-data:www-data -R /tmp/
+chown www-data:www-data -R /data/
+chmod g+rwx -R /data/
+	
+# Set ssh permissions
+if [ -z "/data/.ssh/authorized_keys" ]
+	then
+		chown www-data:www-data -R /data/.ssh
+		chmod go-w /data/
+		chmod 700 /data/.ssh
+		chmod 600 /data/.ssh/authorized_keys
+fi
